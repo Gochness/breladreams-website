@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breladreams Apartment Guide</title>
+
+<style>
+:root{
+  --bg:#f7f3ec;
+  --card:#fffdf8;
+  --text:#1f1b16;
+  --muted:#6f665a;
+  --gold:#b08a4a;
+  --line:#e8ded0;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#fbf8f2,var(--bg));color:var(--text)}
+.wrap{max-width:900px;margin:auto;padding:24px 16px 40px}
+header{text-align:center;margin-bottom:24px}
+.kicker{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-size:12px;font-weight:700}
+h1{font-family:Georgia,serif;font-size:54px;margin:10px 0 6px;font-weight:500}
+.sub{color:var(--muted);font-size:18px;line-height:1.5}
+.langs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:26px}
+.langs button{border:1px solid var(--line);background:white;border-radius:999px;padding:12px 8px;cursor:pointer;font-size:15px;line-height:1.15;transition:.2s}
+.langs button.active{border-color:var(--gold);font-weight:700;box-shadow:0 0 0 2px rgba(176,138,74,.16)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.05)}
+.card h2{margin-top:0;font-family:Georgia,serif;font-size:30px;font-weight:500}
+.item{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:none}
+.icon{width:48px;height:48px;border-radius:14px;background:#f1e7d8;display:flex;align-items:center;justify-content:center;font-size:22px}
+.item b{display:block;margin-bottom:4px;font-size:17px}
+.item span{color:var(--muted);line-height:1.5}
+footer{text-align:center;margin-top:30px;color:var(--muted)}
+a{color:inherit}
+@media(max-width:800px){h1{font-size:42px}.grid{grid-template-columns:1fr}.langs button{font-size:13px;padding:10px 4px}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">WELCOME TO BRELADREAMS</div>
+  <h1 id="title">Apartment Guide</h1>
+  <div class="sub">Designed for rest, sunshine and beautiful memories.</div>
+</header>
+
+<div class="langs">
+  <button id="btn-de" onclick="setLang('de')">Deutsch</button>
+  <button id="btn-en" onclick="setLang('en')">English</button>
+  <button id="btn-pl" onclick="setLang('pl')">Polski</button>
+  <button id="btn-cz" onclick="setLang('cz')">Česky</button>
+  <button id="btn-sk" onclick="setLang('sk')">Slovensky</button>
+</div>
+
+<div class="grid" id="content"></div>
+<footer>Breladreams • Brela, Croatia</footer>
+</div>
+
+<script>
+const translations = {
+  de:{
+    title:'Apartment Guide',
+    sections:`
+      <div class="card"><h2>Willkommen</h2>
+        <div class="item"><div class="icon">🏠</div><div><b>Adresse</b><span>Stomarica 10A, 21322 Brela</span></div></div>
+        <div class="item"><div class="icon">💬</div><div><b>Kontakt</b><span><a href="https://wa.me/49015783161080">WhatsApp: +49 01578 3161080</a></span></div></div>
+        <div class="item"><div class="icon">🆘</div><div><b>Notruf</b><span>112</span></div></div>
+      </div>
+      <div class="card"><h2>WLAN</h2>
+        <div class="item"><div class="icon">📶</div><div><b>Netzwerk</b><span>Breladreams.com</span></div></div>
+        <div class="item"><div class="icon">🔐</div><div><b>Passwort</b><span>********</span></div></div>
+      </div>
+      <div class="card"><h2>Check-in / Check-out</h2>
+        <div class="item"><div class="icon">🔑</div><div><b>Check-in</b><span>ab 15:00 Uhr</span></div></div>
+        <div class="item"><div class="icon">🚪</div><div><b>Check-out</b><span>bis 10:30 Uhr</span></div></div>
+        <div class="item"><div class="icon">🗝️</div><div><b>Schlüssel</b><span>Bitte die Schlüssel bei Abreise in die Schlüsselbox legen.</span></div></div>
+        <div class="item"><div class="icon">⏰</div><div><b>Late Check-out</b><span>Bis 14:00 Uhr für 20€ möglich, nach Verfügbarkeit – bitte am Vorabend der Abreise anfragen.</span></div></div>
+      </div>
+      <div class="card"><h2>Vor der Abreise</h2>
+        <div class="item"><div class="icon">💡</div><div><b>Strom</b><span>Bitte Licht und Klimaanlage ausschalten.</span></div></div>
+        <div class="item"><div class="icon">🗑️</div><div><b>Müll</b><span>Bitte Müll rausbringen, wenn der Urlaub vorbei ist und das Apartment verlassen wird.</span></div></div>
+        <div class="item"><div class="icon">☕</div><div><b>Kaffeemaschine</b><span>Bitte die Kaffeemaschine vor Abreise wieder auf Englisch stellen.</span></div></div>
+        <div class="item"><div class="icon">📺</div><div><b>TV</b><span>Bitte den TV vor Abreise wieder auf Englisch stellen.</span></div></div>
+      </div>
+      <div class="card"><h2>Ankunft & Aufenthalt</h2>
+        <div class="item"><div class="icon">🚗</div><div><b>Parkplatz</b><span>Garage / Abstellplatz vor der Garage</span></div></div>
+        <div class="item"><div class="icon">❄️</div><div><b>Klimaanlage</b><span>Zum Kühlen empfehlen wir 24–25 °C.</span></div></div>
+      </div>
+      <div class="card"><h2>Hausregeln & Strand</h2>
+        <div class="item"><div class="icon">🌙</div><div><b>Ruhe</b><span>Nachtruhe ab 22:00 Uhr, bitte Rücksicht auf Nachbarn nehmen.</span></div></div>
+        <div class="item"><div class="icon">🚭</div><div><b>Rauchen</b><span>Bitte nur draußen rauchen.</span></div></div>
+        <div class="item"><div class="icon">🚿</div><div><b>Strand</b><span>Kostenlose Duschen am Strand.</span></div></div>
+      </div>
+      <div class="card"><h2>Gut zu wissen</h2>
+        <div class="item"><div class="icon">🚰</div><div><b>Leitungswasser</b><span>Leitungswasser ist in der Regel trinkbar. Für Babys oder empfindliche Personen empfehlen wir Wasser aus Flaschen.</span></div></div>
+        <div class="item"><div class="icon">🏖️</div><div><b>Badetücher</b><span>Die Badetücher im Apartment sind keine Strandtücher.</span></div></div>
+        <div class="item"><div class="icon">🛠️</div><div><b>Schäden</b><span>Falls etwas beschädigt wird oder nicht funktioniert, bitte kurz Bescheid geben.</span></div></div>
+      </div>`
+  },
+  en:{
+    title:'Apartment Guide',
+    sections:`
+      <div class="card"><h2>Welcome</h2>
+        <div class="item"><div class="icon">🏠</div><div><b>Address</b><span>Stomarica 10A, 21322 Brela</span></div></div>
+        <div class="item"><div class="icon">💬</div><div><b>Contact</b><span><a href="https://wa.me/49015783161080">WhatsApp: +49 01578 3161080</a></span></div></div>
+        <div class="item"><div class="icon">🆘</div><div><b>Emergency</b><span>112</span></div></div>
+      </div>
+      <div class="card"><h2>Wi‑Fi</h2>
+        <div class="item"><div class="icon">📶</div><div><b>Network</b><span>Breladreams.com</span></div></div>
+        <div class="item"><div class="icon">🔐</div><div><b>Password</b><span>********</span></div></div>
+      </div>
+      <div class="card"><h2>Check-in / Check-out</h2>
+        <div class="item"><div class="icon">🔑</div><div><b>Check-in</b><span>from 3:00 PM</span></div></div>
+        <div class="item"><div class="icon">🚪</div><div><b>Check-out</b><span>until 10:30 AM</span></div></div>
+        <div class="item"><div class="icon">🗝️</div><div><b>Keys</b><span>Please place the keys in the key box before departure.</span></div></div>
+        <div class="item"><div class="icon">⏰</div><div><b>Late Check-out</b><span>Available until 2:00 PM for €20, subject to availability – please ask the evening before departure.</span></div></div>
+      </div>
+      <div class="card"><h2>Before Departure</h2>
+        <div class="item"><div class="icon">💡</div><div><b>Electricity</b><span>Please switch off lights and air conditioning.</span></div></div>
+        <div class="item"><div class="icon">🗑️</div><div><b>Trash</b><span>Please take out the trash when your vacation is over and you leave the apartment.</span></div></div>
+        <div class="item"><div class="icon">☕</div><div><b>Coffee Machine</b><span>Please switch the coffee machine back to English before departure.</span></div></div>
+        <div class="item"><div class="icon">📺</div><div><b>TV</b><span>Please switch the TV back to English before departure.</span></div></div>
+      </div>
+      <div class="card"><h2>Arrival & Comfort</h2>
+        <div class="item"><div class="icon">🚗</div><div><b>Parking</b><span>Garage / parking space in front of the garage</span></div></div>
+        <div class="item"><div class="icon">❄️</div><div><b>Air Conditioning</b><span>For cooling, we recommend 24–25 °C.</span></div></div>
+      </div>
+      <div class="card"><h2>House Rules & Beach</h2>
+        <div class="item"><div class="icon">🌙</div><div><b>Quiet Hours</b><span>Night quiet from 10:00 PM, please respect the neighbours.</span></div></div>
+        <div class="item"><div class="icon">🚭</div><div><b>Smoking</b><span>Please smoke outside only.</span></div></div>
+        <div class="item"><div class="icon">🚿</div><div><b>Beach</b><span>Free showers are available at the beach.</span></div></div>
+      </div>
+      <div class="card"><h2>Good to know</h2>
+        <div class="item"><div class="icon">🚰</div><div><b>Tap water</b><span>Tap water is generally safe to drink. For babies or sensitive guests, we recommend bottled water.</span></div></div>
+        <div class="item"><div class="icon">🏖️</div><div><b>Bathroom towels</b><span>The bathroom towels in the apartment are not beach towels.</span></div></div>
+        <div class="item"><div class="icon">🛠️</div><div><b>Damage</b><span>If something is damaged or not working, please let us know.</span></div></div>
+      </div>`
+  },
+  pl:{
+    title:'Przewodnik po apartamencie',
+    sections:`
+      <div class="card"><h2>Witamy</h2>
+        <div class="item"><div class="icon">🏠</div><div><b>Adres</b><span>Stomarica 10A, 21322 Brela</span></div></div>
+        <div class="item"><div class="icon">💬</div><div><b>Kontakt</b><span><a href="https://wa.me/49015783161080">WhatsApp: +49 01578 3161080</a></span></div></div>
+        <div class="item"><div class="icon">🆘</div><div><b>Numer alarmowy</b><span>112</span></div></div>
+      </div>
+      <div class="card"><h2>Wi‑Fi</h2>
+        <div class="item"><div class="icon">📶</div><div><b>Sieć</b><span>Breladreams.com</span></div></div>
+        <div class="item"><div class="icon">🔐</div><div><b>Hasło</b><span>********</span></div></div>
+      </div>
+      <div class="card"><h2>Zameldowanie / Wymeldowanie</h2>
+        <div class="item"><div class="icon">🔑</div><div><b>Zameldowanie</b><span>od 15:00</span></div></div>
+        <div class="item"><div class="icon">🚪</div><div><b>Wymeldowanie</b><span>do 10:30</span></div></div>
+        <div class="item"><div class="icon">🗝️</div><div><b>Klucze</b><span>Przed wyjazdem prosimy włożyć klucze do skrzynki na klucze.</span></div></div>
+        <div class="item"><div class="icon">⏰</div><div><b>Późne wymeldowanie</b><span>Możliwe do 14:00 za 20€, w zależności od dostępności – prosimy zapytać wieczorem przed wyjazdem.</span></div></div>
+      </div>
+      <div class="card"><h2>Przed wyjazdem</h2>
+        <div class="item"><div class="icon">💡</div><div><b>Prąd</b><span>Prosimy wyłączyć światła i klimatyzację.</span></div></div>
+        <div class="item"><div class="icon">🗑️</div><div><b>Śmieci</b><span>Prosimy wynieść śmieci po zakończeniu urlopu i przed opuszczeniem apartamentu.</span></div></div>
+        <div class="item"><div class="icon">☕</div><div><b>Ekspres do kawy</b><span>Przed wyjazdem prosimy ustawić ekspres ponownie na język angielski.</span></div></div>
+        <div class="item"><div class="icon">📺</div><div><b>TV</b><span>Przed wyjazdem prosimy ustawić telewizor ponownie na język angielski.</span></div></div>
+      </div>
+      <div class="card"><h2>Przyjazd i komfort</h2>
+        <div class="item"><div class="icon">🚗</div><div><b>Parking</b><span>Garaż / miejsce postojowe przed garażem</span></div></div>
+        <div class="item"><div class="icon">❄️</div><div><b>Klimatyzacja</b><span>Do chłodzenia zalecamy 24–25 °C.</span></div></div>
+      </div>
+      <div class="card"><h2>Zasady domu i plaża</h2>
+        <div class="item"><div class="icon">🌙</div><div><b>Cisza nocna</b><span>Cisza nocna od 22:00, prosimy o szacunek dla sąsiadów.</span></div></div>
+        <div class="item"><div class="icon">🚭</div><div><b>Palenie</b><span>Prosimy palić tylko na zewnątrz.</span></div></div>
+        <div class="item"><div class="icon">🚿</div><div><b>Plaża</b><span>Na plaży dostępne są bezpłatne prysznice.</span></div></div>
+      </div>
+      <div class="card"><h2>Warto wiedzieć</h2>
+        <div class="item"><div class="icon">🚰</div><div><b>Woda z kranu</b><span>Woda z kranu jest zazwyczaj zdatna do picia. Dla niemowląt lub osób wrażliwych zalecamy wodę butelkowaną.</span></div></div>
+        <div class="item"><div class="icon">🏖️</div><div><b>Ręczniki</b><span>Ręczniki łazienkowe w apartamencie nie są ręcznikami plażowymi.</span></div></div>
+        <div class="item"><div class="icon">🛠️</div><div><b>Uszkodzenia</b><span>Jeśli coś zostanie uszkodzone albo nie działa, prosimy nas poinformować.</span></div></div>
+      </div>`
+  },
+  cz:{
+    title:'Průvodce apartmánem',
+    sections:`
+      <div class="card"><h2>Vítejte</h2>
+        <div class="item"><div class="icon">🏠</div><div><b>Adresa</b><span>Stomarica 10A, 21322 Brela</span></div></div>
+        <div class="item"><div class="icon">💬</div><div><b>Kontakt</b><span><a href="https://wa.me/49015783161080">WhatsApp: +49 01578 3161080</a></span></div></div>
+        <div class="item"><div class="icon">🆘</div><div><b>Tísňové volání</b><span>112</span></div></div>
+      </div>
+      <div class="card"><h2>Wi‑Fi</h2>
+        <div class="item"><div class="icon">📶</div><div><b>Síť</b><span>Breladreams.com</span></div></div>
+        <div class="item"><div class="icon">🔐</div><div><b>Heslo</b><span>********</span></div></div>
+      </div>
+      <div class="card"><h2>Příjezd / Odjezd</h2>
+        <div class="item"><div class="icon">🔑</div><div><b>Příjezd</b><span>od 15:00</span></div></div>
+        <div class="item"><div class="icon">🚪</div><div><b>Odjezd</b><span>do 10:30</span></div></div>
+        <div class="item"><div class="icon">🗝️</div><div><b>Klíče</b><span>Před odjezdem prosím vložte klíče do schránky na klíče.</span></div></div>
+        <div class="item"><div class="icon">⏰</div><div><b>Pozdní odjezd</b><span>Možný do 14:00 za 20€, dle dostupnosti – prosím zeptejte se večer před odjezdem.</span></div></div>
+      </div>
+      <div class="card"><h2>Před odjezdem</h2>
+        <div class="item"><div class="icon">💡</div><div><b>Elektřina</b><span>Prosím vypněte světla a klimatizaci.</span></div></div>
+        <div class="item"><div class="icon">🗑️</div><div><b>Odpad</b><span>Prosím vyneste odpad po skončení dovolené a před opuštěním apartmánu.</span></div></div>
+        <div class="item"><div class="icon">☕</div><div><b>Kávovar</b><span>Před odjezdem prosím nastavte kávovar zpět na angličtinu.</span></div></div>
+        <div class="item"><div class="icon">📺</div><div><b>TV</b><span>Před odjezdem prosím nastavte televizi zpět na angličtinu.</span></div></div>
+      </div>
+      <div class="card"><h2>Příjezd a pohodlí</h2>
+        <div class="item"><div class="icon">🚗</div><div><b>Parkování</b><span>Garáž / parkovací místo před garáží</span></div></div>
+        <div class="item"><div class="icon">❄️</div><div><b>Klimatizace</b><span>Pro chlazení doporučujeme 24–25 °C.</span></div></div>
+      </div>
+      <div class="card"><h2>Domovní pravidla a pláž</h2>
+        <div class="item"><div class="icon">🌙</div><div><b>Noční klid</b><span>Noční klid od 22:00, prosím berte ohled na sousedy.</span></div></div>
+        <div class="item"><div class="icon">🚭</div><div><b>Kouření</b><span>Prosím kouřte pouze venku.</span></div></div>
+        <div class="item"><div class="icon">🚿</div><div><b>Pláž</b><span>Na pláži jsou k dispozici bezplatné sprchy.</span></div></div>
+      </div>
+      <div class="card"><h2>Dobré vědět</h2>
+        <div class="item"><div class="icon">🚰</div><div><b>Voda z kohoutku</b><span>Voda z kohoutku je obecně pitná. Pro miminka nebo citlivé osoby doporučujeme balenou vodu.</span></div></div>
+        <div class="item"><div class="icon">🏖️</div><div><b>Ručníky</b><span>Koupelnové ručníky v apartmánu nejsou plážové ručníky.</span></div></div>
+        <div class="item"><div class="icon">🛠️</div><div><b>Škody</b><span>Pokud se něco poškodí nebo nefunguje, prosím dejte nám vědět.</span></div></div>
+      </div>`
+  },
+  sk:{
+    title:'Sprievodca apartmánom',
+    sections:`
+      <div class="card"><h2>Vitajte</h2>
+        <div class="item"><div class="icon">🏠</div><div><b>Adresa</b><span>Stomarica 10A, 21322 Brela</span></div></div>
+        <div class="item"><div class="icon">💬</div><div><b>Kontakt</b><span><a href="https://wa.me/49015783161080">WhatsApp: +49 01578 3161080</a></span></div></div>
+        <div class="item"><div class="icon">🆘</div><div><b>Núdzové volanie</b><span>112</span></div></div>
+      </div>
+      <div class="card"><h2>Wi‑Fi</h2>
+        <div class="item"><div class="icon">📶</div><div><b>Sieť</b><span>Breladreams.com</span></div></div>
+        <div class="item"><div class="icon">🔐</div><div><b>Heslo</b><span>********</span></div></div>
+      </div>
+      <div class="card"><h2>Príchod / Odchod</h2>
+        <div class="item"><div class="icon">🔑</div><div><b>Príchod</b><span>od 15:00</span></div></div>
+        <div class="item"><div class="icon">🚪</div><div><b>Odchod</b><span>do 10:30</span></div></div>
+        <div class="item"><div class="icon">🗝️</div><div><b>Kľúče</b><span>Pred odchodom prosím vložte kľúče do schránky na kľúče.</span></div></div>
+        <div class="item"><div class="icon">⏰</div><div><b>Neskorý odchod</b><span>Možný do 14:00 za 20€, podľa dostupnosti – prosím opýtajte sa večer pred odchodom.</span></div></div>
+      </div>
+      <div class="card"><h2>Pred odchodom</h2>
+        <div class="item"><div class="icon">💡</div><div><b>Elektrina</b><span>Prosím vypnite svetlá a klimatizáciu.</span></div></div>
+        <div class="item"><div class="icon">🗑️</div><div><b>Odpad</b><span>Prosím vyneste odpad po skončení dovolenky a pred opustením apartmánu.</span></div></div>
+        <div class="item"><div class="icon">☕</div><div><b>Kávovar</b><span>Pred odchodom prosím nastavte kávovar späť na angličtinu.</span></div></div>
+        <div class="item"><div class="icon">📺</div><div><b>TV</b><span>Pred odchodom prosím nastavte televízor späť na angličtinu.</span></div></div>
+      </div>
+      <div class="card"><h2>Príchod a pohodlie</h2>
+        <div class="item"><div class="icon">🚗</div><div><b>Parkovanie</b><span>Garáž / parkovacie miesto pred garážou</span></div></div>
+        <div class="item"><div class="icon">❄️</div><div><b>Klimatizácia</b><span>Na chladenie odporúčame 24–25 °C.</span></div></div>
+      </div>
+      <div class="card"><h2>Domové pravidlá a pláž</h2>
+        <div class="item"><div class="icon">🌙</div><div><b>Nočný pokoj</b><span>Nočný pokoj od 22:00, prosím berte ohľad na susedov.</span></div></div>
+        <div class="item"><div class="icon">🚭</div><div><b>Fajčenie</b><span>Prosím fajčite iba vonku.</span></div></div>
+        <div class="item"><div class="icon">🚿</div><div><b>Pláž</b><span>Na pláži sú k dispozícii bezplatné sprchy.</span></div></div>
+      </div>
+      <div class="card"><h2>Dobré vedieť</h2>
+        <div class="item"><div class="icon">🚰</div><div><b>Voda z vodovodu</b><span>Voda z vodovodu je vo všeobecnosti pitná. Pre bábätká alebo citlivé osoby odporúčame balenú vodu.</span></div></div>
+        <div class="item"><div class="icon">🏖️</div><div><b>Uteráky</b><span>Kúpeľňové uteráky v apartmáne nie sú plážové uteráky.</span></div></div>
+        <div class="item"><div class="icon">🛠️</div><div><b>Škody</b><span>Ak sa niečo poškodí alebo nefunguje, prosím dajte nám vedieť.</span></div></div>
+      </div>`
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll('.langs button').forEach(btn => btn.classList.remove('active'));
+  document.getElementById('btn-' + lang).classList.add('active');
+  document.getElementById('title').innerHTML = translations[lang].title;
+  document.getElementById('content').innerHTML = translations[lang].sections;
+}
+
+window.onload = function(){ setLang('en'); };
+</script>
+</body>
+</html>
