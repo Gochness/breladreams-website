@@ -47,4 +47,31 @@ document.addEventListener('DOMContentLoaded', () => {
   closeBtn.addEventListener('click', closeLightbox);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Hidden guest access: press and hold the logo (~0.9s) to reach the guest area.
+  // A normal quick click still goes to the homepage as usual.
+  document.querySelectorAll('.brand').forEach(brand => {
+    let pressTimer = null;
+    let triggered = false;
+
+    const start = () => {
+      triggered = false;
+      pressTimer = setTimeout(() => {
+        triggered = true;
+        window.location.href = '/gaeste/';
+      }, 900);
+    };
+    const cancel = () => clearTimeout(pressTimer);
+
+    brand.addEventListener('mousedown', start);
+    brand.addEventListener('mouseup', cancel);
+    brand.addEventListener('mouseleave', cancel);
+    brand.addEventListener('touchstart', start, { passive: true });
+    brand.addEventListener('touchend', cancel);
+    brand.addEventListener('touchmove', cancel);
+
+    brand.addEventListener('click', e => {
+      if (triggered) e.preventDefault();
+    });
+  });
 });
