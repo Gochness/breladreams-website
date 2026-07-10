@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /willkomeninfos/
+Disallow: /kaffee/
 
 Sitemap: https://www.breladreams.com/sitemap.xml
