@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apartment Breladreams · Coffee Guide</title>
+
+  <style>
+    :root{
+      --bg:#f7f3ec;
+      --card:#fffdf8;
+      --text:#1f1b16;
+      --muted:#6f665a;
+      --gold:#b08a4a;
+      --line:#e8ded0;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#fbf8f2,var(--bg));
+      color:var(--text);
+    }
+
+    .wrap{
+      max-width:760px;
+      margin:0 auto;
+      padding:22px 16px 40px;
+    }
+
+    header{
+      text-align:center;
+      padding:16px 0 12px;
+    }
+
+    .kicker{
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      font-size:12px;
+      font-weight:700;
+    }
+
+    h1{
+      font-family:Georgia,serif;
+      font-weight:500;
+      font-size:34px;
+      margin:8px 0 6px;
+    }
+
+    .sub{
+      color:var(--muted);
+      font-size:15px;
+      margin:0;
+    }
+
+    .photo{
+      width:100%;
+      display:block;
+      border-radius:28px;
+      margin:24px 0 18px;
+      box-shadow:0 12px 32px rgba(31,27,22,.12);
+    }
+
+    .langs{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:8px;
+      margin-top:10px;
+    }
+
+    button{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:999px;
+      padding:11px 6px;
+      font-size:15px;
+      color:var(--text);
+      cursor:pointer;
+    }
+
+    button.active{
+      border-color:var(--gold);
+      box-shadow:0 0 0 2px rgba(176,138,74,.16);
+      font-weight:700;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:24px;
+      margin-top:18px;
+      box-shadow:0 10px 30px rgba(31,27,22,.06);
+    }
+
+    h2{
+      font-family:Georgia,serif;
+      font-size:28px;
+      font-weight:500;
+      margin:0 0 14px;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:14px;
+      align-items:start;
+      padding:15px 0;
+      border-top:1px solid var(--line);
+    }
+
+    .step:first-child{
+      border-top:0;
+    }
+
+    .icon{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background:#f1e7d8;
+      display:grid;
+      place-items:center;
+      font-size:24px;
+    }
+
+    .step b{
+      display:block;
+      margin-bottom:4px;
+      font-size:20px;
+    }
+
+    .step span{
+      color:var(--muted);
+      line-height:1.5;
+      font-size:17px;
+    }
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      margin-top:26px;
+    }
+
+    @media (max-width:700px){
+
+      h1{
+        font-size:28px;
+      }
+
+      .step b{
+        font-size:18px;
+      }
+
+      .step span{
+        font-size:15px;
+      }
+
+      .card{
+        padding:20px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="wrap">
+
+  <header>
+
+    <div class="kicker">
+      Apartment Breladreams
+    </div>
+
+    <h1 id="title">
+      Kaffee-Anleitung
+    </h1>
+
+    <p class="sub">
+      Siemens EQ.6 plus s700
+    </p>
+
+    <p class="sub" style="margin-top:10px;font-style:italic;">
+      Enjoy barista-quality coffee during your stay.
+    </p>
+
+  </header>
+
+<img
+  class="photo"
+  src="coffee-machine.jpg"
+  alt="Siemens EQ.6 plus s700 coffee machine"
+  style="max-width:520px;margin:24px auto 18px;display:block;object-fit:contain;"
+/>
+
+  <nav class="langs">
+
+    <button onclick="setLang('de')" id="btn-de">
+      DE
+    </button>
+
+    <button onclick="setLang('en')" id="btn-en">
+      EN
+    </button>
+
+    <button onclick="setLang('pl')" id="btn-pl">
+      PL
+    </button>
+
+    <button onclick="setLang('cs')" id="btn-cs">
+      CZ
+    </button>
+
+    <button onclick="setLang('sk')" id="btn-sk">
+      SK
+    </button>
+
+  </nav>
+
+  <section class="card">
+
+    <h2 id="quickTitle"></h2>
+
+    <div id="steps"></div>
+
+  </section>
+
+  <footer>
+    Enjoy your stay in Brela.
+  </footer>
+
+</main>
+
+<script>
+
+const data = {
+
+  de:{
+    title:'Kaffee-Anleitung',
+    quick:'Kurzanleitung',
+    steps:[
+      ['💧','Wasser','Wassertank links herausziehen, mit frischem Wasser füllen und einsetzen.'],
+      ['☕','Bohnen','Oben Kaffeebohnen einfüllen. Kein <strong>Kaffeepulver</strong> in den Bohnenbehälter.'],
+      ['🥛','Milch','Milchschlauch in den Milchbehälter stecken, falls Cappuccino oder Latte gewünscht ist.'],
+      ['▶️','Start','Tasse unterstellen, Getränk wählen und Start drücken.'],
+      ['🧼','Nach Gebrauch','Milchschlauch kurz spülen, Tropfschale bei Bedarf leeren, Maschine ausschalten.'],
+      ['🌍','Sprache','Bitte stellen Sie die Kaffeemaschine vor Ihrer Abreise wieder auf Englisch.']
+    ]
+  },
+
+  en:{
+    title:'Coffee Guide',
+    quick:'Quick guide',
+    steps:[
+      ['💧','Water','Pull out the water tank on the left, fill with fresh water and insert it again.'],
+      ['☕','Beans','Fill coffee beans at the top. Do not put <strong>coffee powder</strong> into the bean container.'],
+      ['🥛','Milk','Place the milk tube into the milk container for cappuccino or latte.'],
+      ['▶️','Start','Place your cup, choose a drink and press Start.'],
+      ['🧼','After use','Rinse the milk tube briefly, empty the drip tray if needed, switch off the machine.'],
+      ['🌍','Language','Before departure, please switch the coffee machine back to English.']
+    ]
+  },
+
+  pl:{
+    title:'Instrukcja kawy',
+    quick:'Krótka instrukcja',
+    steps:[
+      ['💧','Woda','Wyjmij zbiornik po lewej stronie, napełnij świeżą wodą i włóż z powrotem.'],
+      ['☕','Ziarna','Wsyp ziarna kawy od góry. Nie wsypuj <strong>kawy w proszku</strong> do pojemnika na ziarna.'],
+      ['🥛','Mleko','Włóż rurkę do pojemnika z mlekiem, jeśli chcesz cappuccino lub latte.'],
+      ['▶️','Start','Postaw filiżankę, wybierz napój i naciśnij Start.'],
+      ['🧼','Po użyciu','Krótko przepłucz rurkę do mleka, w razie potrzeby opróżnij tackę, wyłącz ekspres.'],
+      ['🌍','Język','Przed wyjazdem prosimy ponownie ustawić ekspres na język angielski.']
+    ]
+  },
+
+  cs:{
+    title:'Návod na kávu',
+    quick:'Stručný návod',
+    steps:[
+      ['💧','Voda','Vytáhněte nádržku vlevo, naplňte ji čerstvou vodou a vraťte zpět.'],
+      ['☕','Zrna','Nasypte kávová zrna shora. <strong>Kávový prášek</strong> nedávejte do zásobníku na zrna.'],
+      ['🥛','Mléko','Pro cappuccino nebo latte vložte hadičku do nádoby s mlékem.'],
+      ['▶️','Start','Postavte šálek, vyberte nápoj a stiskněte Start.'],
+      ['🧼','Po použití','Krátce propláchněte mléčnou hadičku, podle potřeby vyprázdněte odkapávač, vypněte přístroj.'],
+      ['🌍','Jazyk','Před odjezdem prosím nastavte kávovar zpět na angličtinu.']
+    ]
+  },
+
+  sk:{
+    title:'Návod na kávu',
+    quick:'Stručný návod',
+    steps:[
+      ['💧','Voda','Vytiahnite nádržku vľavo, naplňte ju čerstvou vodou a vložte späť.'],
+      ['☕','Zrná','Nasypte kávové zrná zhora. <strong>Kávový prášok</strong> nedávajte do zásobníka na zrná.'],
+      ['🥛','Mlieko','Pre cappuccino alebo latte vložte hadičku do nádoby s mliekom.'],
+      ['▶️','Start','Položte šálku, vyberte nápoj a stlačte Start.'],
+      ['🧼','Po použití','Krátko prepláchnite mliečnu hadičku, podľa potreby vyprázdnite odkvapkávač, vypnite prístroj.'],
+      ['🌍','Jazyk','Pred odchodom prosím nastavte kávovar späť na angličtinu.']
+    ]
+  }
+
+};
+
+function setLang(lang){
+
+  const d = data[lang];
+
+  document.documentElement.lang = lang;
+
+  document.getElementById('title').textContent = d.title;
+
+  document.getElementById('quickTitle').textContent = d.quick;
+
+  document.getElementById('steps').innerHTML =
+    d.steps.map(s => `
+      <div class="step">
+        <div class="icon">${s[0]}</div>
+        <div>
+          <b>${s[1]}</b>
+          <span>${s[2]}</span>
+        </div>
+      </div>
+    `).join('');
+
+  document.querySelectorAll('button').forEach(
+    b => b.classList.remove('active')
+  );
+
+  document.getElementById('btn-' + lang).classList.add('active');
+}
+
+setLang('de');
+
+</script>
+
+</body>
+</html>
