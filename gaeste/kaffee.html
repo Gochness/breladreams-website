@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Kaffee-Anleitung für die Siemens EQ.6 plus s700 im Breladreams Apartment.">
+  <title>Kaffee-Anleitung | Breladreams</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .pagehead{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center;padding:8px 0 6px}
+    @media (max-width:680px){.pagehead{grid-template-columns:1fr}}
+    .pagehead img{border-radius:var(--radius);box-shadow:var(--shadow)}
+    .eyebrow{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+    .langswitch{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .langswitch button{border:1px solid var(--sand);background:var(--white);color:var(--text);border-radius:999px;padding:7px 15px;font-size:.85rem;cursor:pointer;font-family:inherit}
+    .langswitch button.active{border-color:var(--accent);background:rgba(217,155,67,.14);font-weight:700}
+    .langswitch button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+    .stepcard{background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 26px 10px;margin-top:26px}
+    .step{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--sand)}
+    .step:first-child{border-top:0}
+    .step .icon{width:40px;height:40px;border-radius:12px;background:rgba(217,155,67,.16);display:grid;place-items:center;font-size:19px}
+    .step b{display:block;font-size:1.02rem;margin-bottom:2px}
+    .step span{color:var(--muted);font-size:.93rem}
+    .crumb{color:var(--muted);font-size:.9rem;margin:0 0 10px}
+    .crumb a{color:var(--blue);text-decoration:none}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="Breladreams Startseite"><img src="../assets/images/logo.webp" alt="Breladreams Logo"><span>Breladreams</span></a>
+    <nav class="navlinks" aria-label="Hauptnavigation"><a href="../index.html">Start</a><a href="../apartment.html">Apartment</a><a href="../lage.html">Lage</a><a class="cta" href="../kontakt.html">Anfragen</a></nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <p class="crumb"><a href="index.html">← Gäste-Übersicht</a></p>
+
+    <div class="pagehead">
+      <img src="../assets/images/gaeste/coffee-machine.jpg" alt="Siemens EQ.6 plus s700 Kaffeemaschine">
+      <div>
+        <div class="eyebrow">Kaffeemaschine</div>
+        <h1 id="title">Kaffee-Anleitung</h1>
+        <p style="color:var(--muted);margin:0">Siemens EQ.6 plus s700</p>
+        <div class="langswitch" role="tablist" aria-label="Sprache wählen">
+          <button class="active" data-lang="de">DE</button>
+          <button data-lang="en">EN</button>
+          <button data-lang="pl">PL</button>
+          <button data-lang="cz">CZ</button>
+          <button data-lang="sk">SK</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stepcard"><div id="steps"></div></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div><strong>Breladreams Apartment</strong><p>Ferienwohnung in Brela an der Makarska Riviera.</p></div>
+    <div><strong>Adresse</strong><p>Stomarica 10a<br>21322 Brela<br>Kroatien</p></div>
+    <div><strong>Kontakt</strong><p><a href="mailto:breladreams@gmail.com">breladreams@gmail.com</a><br><a href="tel:+4915783161080">+49 1578 3161080</a></p></div>
+  </div>
+</footer>
+
+<script>
+const DATA = {
+  de:{ title:'Kaffee-Anleitung', steps:[
+    ['💧','Wasser','Wassertank links herausziehen, mit frischem Wasser füllen und einsetzen.'],
+    ['☕','Bohnen','Oben Kaffeebohnen einfüllen. Kein Kaffeepulver in den Bohnenbehälter.'],
+    ['🥛','Milch','Milchschlauch in den Milchbehälter stecken, falls Cappuccino oder Latte gewünscht ist.'],
+    ['▶️','Start','Tasse unterstellen, Getränk wählen und Start drücken.'],
+    ['🧼','Nach Gebrauch','Milchschlauch kurz spülen, Tropfschale bei Bedarf leeren, Maschine ausschalten.'],
+    ['🌍','Sprache','Bitte stellen Sie die Kaffeemaschine vor Ihrer Abreise wieder auf Englisch.']
+  ]},
+  en:{ title:'Coffee Guide', steps:[
+    ['💧','Water','Pull out the water tank on the left, fill with fresh water and insert it again.'],
+    ['☕','Beans','Fill coffee beans at the top. Do not put coffee powder into the bean container.'],
+    ['🥛','Milk','Place the milk tube into the milk container for cappuccino or latte.'],
+    ['▶️','Start','Place your cup, choose a drink and press Start.'],
+    ['🧼','After use','Rinse the milk tube briefly, empty the drip tray if needed, switch off the machine.'],
+    ['🌍','Language','Before departure, please switch the coffee machine back to English.']
+  ]},
+  pl:{ title:'Instrukcja kawy', steps:[
+    ['💧','Woda','Wyjmij zbiornik po lewej stronie, napełnij świeżą wodą i włóż z powrotem.'],
+    ['☕','Ziarna','Wsyp ziarna kawy od góry. Nie wsypuj kawy w proszku do pojemnika na ziarna.'],
+    ['🥛','Mleko','Włóż rurkę do pojemnika z mlekiem, jeśli chcesz cappuccino lub latte.'],
+    ['▶️','Start','Postaw filiżankę, wybierz napój i naciśnij Start.'],
+    ['🧼','Po użyciu','Krótko przepłucz rurkę do mleka, w razie potrzeby opróżnij tackę, wyłącz ekspres.'],
+    ['🌍','Język','Przed wyjazdem prosimy ponownie ustawić ekspres na język angielski.']
+  ]},
+  cz:{ title:'Návod na kávu', steps:[
+    ['💧','Voda','Vytáhněte nádržku vlevo, naplňte ji čerstvou vodou a vraťte zpět.'],
+    ['☕','Zrna','Nasypte kávová zrna shora. Kávový prášek nedávejte do zásobníku na zrna.'],
+    ['🥛','Mléko','Pro cappuccino nebo latte vložte hadičku do nádoby s mlékem.'],
+    ['▶️','Start','Postavte šálek, vyberte nápoj a stiskněte Start.'],
+    ['🧼','Po použití','Krátce propláchněte mléčnou hadičku, podle potřeby vyprázdněte odkapávač, vypněte přístroj.'],
+    ['🌍','Jazyk','Před odjezdem prosím nastavte kávovar zpět na angličtinu.']
+  ]},
+  sk:{ title:'Návod na kávu', steps:[
+    ['💧','Voda','Vytiahnite nádržku vľavo, naplňte ju čerstvou vodou a vložte späť.'],
+    ['☕','Zrná','Nasypte kávové zrná zhora. Kávový prášok nedávajte do zásobníka na zrná.'],
+    ['🥛','Mlieko','Pre cappuccino alebo latte vložte hadičku do nádoby s mliekom.'],
+    ['▶️','Start','Položte šálku, vyberte nápoj a stlačte Start.'],
+    ['🧼','Po použití','Krátko prepláchnite mliečnu hadičku, podľa potreby vyprázdnite odkvapkávač, vypnite prístroj.'],
+    ['🌍','Jazyk','Pred odchodom prosím nastavte kávovar späť na angličtinu.']
+  ]}
+};
+
+function render(lang){
+  const d = DATA[lang];
+  document.getElementById('title').textContent = d.title;
+  document.getElementById('steps').innerHTML = d.steps.map(s => `
+    <div class="step"><div class="icon">${s[0]}</div><div><b>${s[1]}</b><span>${s[2]}</span></div></div>
+  `).join('');
+  document.querySelectorAll('.langswitch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+document.querySelectorAll('.langswitch button').forEach(btn=>{
+  btn.addEventListener('click', ()=>render(btn.dataset.lang));
+});
+render('de');
+</script>
+</body>
+</html>

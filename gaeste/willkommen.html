@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Apartment-Guide für Breladreams: Adresse, WLAN, Check-in/-out, Hausregeln.">
+  <title>Apartment-Guide | Breladreams</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .langswitch{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .langswitch button{border:1px solid var(--sand);background:var(--white);color:var(--text);border-radius:999px;padding:7px 15px;font-size:.85rem;cursor:pointer;font-family:inherit}
+    .langswitch button.active{border-color:var(--accent);background:rgba(217,155,67,.14);font-weight:700}
+    .langswitch button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+    .infogrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px}
+    @media (max-width:700px){.infogrid{grid-template-columns:1fr}}
+    .infogroup{background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px}
+    .infogroup h3{margin:0 0 10px;font-size:1rem}
+    .kv{display:grid;grid-template-columns:24px 1fr;gap:10px;padding:6px 0;font-size:.92rem}
+    .kv b{grid-column:2;display:block}
+    .kv span{color:var(--muted);grid-column:2}
+    .crumb{color:var(--muted);font-size:.9rem;margin:0 0 10px}
+    .crumb a{color:var(--blue);text-decoration:none}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="Breladreams Startseite"><img src="../assets/images/logo.webp" alt="Breladreams Logo"><span>Breladreams</span></a>
+    <nav class="navlinks" aria-label="Hauptnavigation"><a href="../index.html">Start</a><a href="../apartment.html">Apartment</a><a href="../lage.html">Lage</a><a class="cta" href="../kontakt.html">Anfragen</a></nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <p class="crumb"><a href="index.html">← Gäste-Übersicht</a></p>
+
+    <div class="section-title">
+      <h1 id="title">Apartment-Guide</h1>
+      <p style="color:var(--muted)">Stomarica 10a · 21322 Brela</p>
+      <div class="langswitch" role="tablist" aria-label="Sprache wählen">
+        <button class="active" data-lang="de">DE</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="pl">PL</button>
+        <button data-lang="cz">CZ</button>
+        <button data-lang="sk">SK</button>
+      </div>
+    </div>
+
+    <div class="infogrid" id="grid"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div><strong>Breladreams Apartment</strong><p>Ferienwohnung in Brela an der Makarska Riviera.</p></div>
+    <div><strong>Adresse</strong><p>Stomarica 10a<br>21322 Brela<br>Kroatien</p></div>
+    <div><strong>Kontakt</strong><p><a href="mailto:breladreams@gmail.com">breladreams@gmail.com</a><br><a href="tel:+4915783161080">+49 1578 3161080</a></p></div>
+  </div>
+</footer>
+
+<script>
+const DATA = {
+  de:{ title:'Apartment-Guide', guide:[
+    ['Willkommen',[['🏠','Adresse','Stomarica 10a, 21322 Brela'],['💬','Kontakt','WhatsApp +49 1578 3161080'],['🆘','Notruf','112']]],
+    ['WLAN',[['📶','Netzwerk','breladreams.com'],['🔐','Passwort','Steht im Apartment aus.']]],
+    ['Check-in / Check-out',[['🔑','Check-in','ab 15:00 Uhr'],['🚪','Check-out','bis 11:00 Uhr'],['🗝️','Schlüssel','Bei Abreise in die Schlüsselbox legen.']]],
+    ['Vor der Abreise',[['💡','Strom','Licht und Klimaanlage ausschalten.'],['🗑️','Müll','Bitte rausbringen, wenn Sie abreisen.'],['☕','Kaffeemaschine','Vor Abreise wieder auf Englisch stellen.'],['📺','TV','Vor Abreise wieder auf Englisch stellen.']]],
+    ['Ankunft & Aufenthalt',[['🚗','Parkplatz','Garage / Abstellplatz vor der Garage'],['❄️','Klimaanlage','Zum Kühlen empfehlen wir 24–25 °C.']]],
+    ['Hausregeln & Strand',[['🌙','Ruhe','Nachtruhe ab 22:00 Uhr, bitte Rücksicht auf Nachbarn nehmen.'],['🚭','Rauchen','Bitte nur draußen rauchen.'],['🚿','Strand','Kostenlose Duschen am Strand.']]],
+    ['Gut zu wissen',[['🚰','Leitungswasser','In der Regel trinkbar. Für Babys/empfindliche Personen empfehlen wir Wasser aus Flaschen.'],['🏖️','Badetücher','Die Badetücher im Apartment sind keine Strandtücher.'],['🛠️','Schäden','Falls etwas beschädigt wird oder nicht funktioniert, bitte kurz Bescheid geben.']]]
+  ]},
+  en:{ title:'Apartment Guide', guide:[
+    ['Welcome',[['🏠','Address','Stomarica 10a, 21322 Brela'],['💬','Contact','WhatsApp +49 1578 3161080'],['🆘','Emergency','112']]],
+    ['Wi-Fi',[['📶','Network','breladreams.com'],['🔐','Password','Available at the apartment.']]],
+    ['Check-in / Check-out',[['🔑','Check-in','from 3:00 PM'],['🚪','Check-out','until 11:00 AM'],['🗝️','Keys','Place the keys in the key box before departure.']]],
+    ['Before departure',[['💡','Electricity','Please switch off lights and air conditioning.'],['🗑️','Trash','Please take out the trash when you leave.'],['☕','Coffee machine','Please switch back to English before departure.'],['📺','TV','Please switch back to English before departure.']]],
+    ['Arrival & comfort',[['🚗','Parking','Garage / parking space in front of the garage'],['❄️','Air conditioning','For cooling, we recommend 24–25 °C.']]],
+    ['House rules & beach',[['🌙','Quiet hours','Night quiet from 10:00 PM, please respect the neighbours.'],['🚭','Smoking','Please smoke outside only.'],['🚿','Beach','Free showers are available at the beach.']]],
+    ['Good to know',[['🚰','Tap water','Generally safe to drink. For babies or sensitive guests, we recommend bottled water.'],['🏖️','Bathroom towels','Not beach towels.'],['🛠️','Damage','If something is damaged or not working, please let us know.']]]
+  ]},
+  pl:{ title:'Przewodnik po apartamencie', guide:[
+    ['Witamy',[['🏠','Adres','Stomarica 10a, 21322 Brela'],['💬','Kontakt','WhatsApp +49 1578 3161080'],['🆘','Numer alarmowy','112']]],
+    ['Wi‑Fi',[['📶','Sieć','breladreams.com'],['🔐','Hasło','Dostępne w apartamencie.']]],
+    ['Zameldowanie / Wymeldowanie',[['🔑','Zameldowanie','od 15:00'],['🚪','Wymeldowanie','do 11:00'],['🗝️','Klucze','Przed wyjazdem prosimy włożyć klucze do skrzynki na klucze.']]],
+    ['Przed wyjazdem',[['💡','Prąd','Prosimy wyłączyć światła i klimatyzację.'],['🗑️','Śmieci','Prosimy wynieść śmieci po zakończeniu urlopu.'],['☕','Ekspres do kawy','Przed wyjazdem prosimy ustawić ponownie na angielski.'],['📺','TV','Przed wyjazdem prosimy ustawić ponownie na angielski.']]],
+    ['Przyjazd i komfort',[['🚗','Parking','Garaż / miejsce postojowe przed garażem'],['❄️','Klimatyzacja','Do chłodzenia zalecamy 24–25 °C.']]],
+    ['Zasady domu i plaża',[['🌙','Cisza nocna','Od 22:00, prosimy o szacunek dla sąsiadów.'],['🚭','Palenie','Prosimy palić tylko na zewnątrz.'],['🚿','Plaża','Na plaży dostępne są bezpłatne prysznice.']]],
+    ['Warto wiedzieć',[['🚰','Woda z kranu','Zazwyczaj zdatna do picia. Dla niemowląt/osób wrażliwych zalecamy wodę butelkowaną.'],['🏖️','Ręczniki','Nie są ręcznikami plażowymi.'],['🛠️','Uszkodzenia','Jeśli coś zostanie uszkodzone, prosimy nas poinformować.']]]
+  ]},
+  cz:{ title:'Průvodce apartmánem', guide:[
+    ['Vítejte',[['🏠','Adresa','Stomarica 10a, 21322 Brela'],['💬','Kontakt','WhatsApp +49 1578 3161080'],['🆘','Tísňové volání','112']]],
+    ['Wi‑Fi',[['📶','Síť','breladreams.com'],['🔐','Heslo','K dispozici v apartmánu.']]],
+    ['Příjezd / Odjezd',[['🔑','Příjezd','od 15:00'],['🚪','Odjezd','do 11:00'],['🗝️','Klíče','Před odjezdem prosím vložte klíče do schránky na klíče.']]],
+    ['Před odjezdem',[['💡','Elektřina','Prosím vypněte světla a klimatizaci.'],['🗑️','Odpad','Prosím vyneste odpad po skončení dovolené.'],['☕','Kávovar','Před odjezdem prosím nastavte zpět na angličtinu.'],['📺','TV','Před odjezdem prosím nastavte zpět na angličtinu.']]],
+    ['Příjezd a pohodlí',[['🚗','Parkování','Garáž / parkovací místo před garáží'],['❄️','Klimatizace','Pro chlazení doporučujeme 24–25 °C.']]],
+    ['Domovní pravidla a pláž',[['🌙','Noční klid','Od 22:00, prosím berte ohled na sousedy.'],['🚭','Kouření','Prosím kouřte pouze venku.'],['🚿','Pláž','Na pláži jsou k dispozici bezplatné sprchy.']]],
+    ['Dobré vědět',[['🚰','Voda z kohoutku','Obecně pitná. Pro miminka/citlivé osoby doporučujeme balenou vodu.'],['🏖️','Ručníky','Nejsou plážové ručníky.'],['🛠️','Škody','Pokud se něco poškodí, prosím dejte nám vědět.']]]
+  ]},
+  sk:{ title:'Sprievodca apartmánom', guide:[
+    ['Vitajte',[['🏠','Adresa','Stomarica 10a, 21322 Brela'],['💬','Kontakt','WhatsApp +49 1578 3161080'],['🆘','Núdzové volanie','112']]],
+    ['Wi‑Fi',[['📶','Sieť','breladreams.com'],['🔐','Heslo','K dispozícii v apartmáne.']]],
+    ['Príchod / Odchod',[['🔑','Príchod','od 15:00'],['🚪','Odchod','do 11:00'],['🗝️','Kľúče','Pred odchodom prosím vložte kľúče do schránky na kľúče.']]],
+    ['Pred odchodom',[['💡','Elektrina','Prosím vypnite svetlá a klimatizáciu.'],['🗑️','Odpad','Prosím vyneste odpad po skončení dovolenky.'],['☕','Kávovar','Pred odchodom prosím nastavte späť na angličtinu.'],['📺','TV','Pred odchodom prosím nastavte späť na angličtinu.']]],
+    ['Príchod a pohodlie',[['🚗','Parkovanie','Garáž / parkovacie miesto pred garážou'],['❄️','Klimatizácia','Na chladenie odporúčame 24–25 °C.']]],
+    ['Domové pravidlá a pláž',[['🌙','Nočný pokoj','Od 22:00, prosím berte ohľad na susedov.'],['🚭','Fajčenie','Prosím fajčite iba vonku.'],['🚿','Pláž','Na pláži sú k dispozícii bezplatné sprchy.']]],
+    ['Dobré vedieť',[['🚰','Voda z vodovodu','Vo všeobecnosti pitná. Pre bábätká/citlivé osoby odporúčame balenú vodu.'],['🏖️','Uteráky','Nie sú plážové uteráky.'],['🛠️','Škody','Ak sa niečo poškodí, prosím dajte nám vedieť.']]]
+  ]}
+};
+
+function render(lang){
+  const d = DATA[lang];
+  document.getElementById('title').textContent = d.title;
+  document.getElementById('grid').innerHTML = d.guide.map(group => `
+    <div class="infogroup"><h3>${group[0]}</h3>
+      ${group[1].map(item => `<div class="kv"><span>${item[0]}</span><b>${item[1]}</b><span>${item[2]}</span></div>`).join('')}
+    </div>
+  `).join('');
+  document.querySelectorAll('.langswitch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+document.querySelectorAll('.langswitch button').forEach(btn=>{
+  btn.addEventListener('click', ()=>render(btn.dataset.lang));
+});
+render('de');
+</script>
+</body>
+</html>
